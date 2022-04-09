@@ -5,10 +5,10 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return HttpResponse('<h1>hello daddy</h1>')
+    return render(request, 'home.html')
 
 def about(request):
-    return HttpResponse('<h1>about</h1>')
+    return render(request, 'about.html')
 
-def index(request):
-    return HttpResponse('<h1>all the slang terms</h1>')
+def slang_index(request):
+    return render(request, 'slang/index.html')
