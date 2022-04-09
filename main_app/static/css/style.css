@@ -1,9 +1,10 @@
 body {
-    background-color: #fcdddd;
+    background-color: #d1e4dc;
   }
 
 nav {
-    background-color:#ff0051;
+    background-color:#858c09;
+    font-family: 'Quicksand', sans-serif;
   }
 h1 {
     box-shadow: 0 4px 11px 1px rgba(0, 0, 0, 0.8);
@@ -13,6 +14,7 @@ h1 {
     color: #000000;
     width: 80%;
     padding: 1vh 1vh 1vh 1vh;
+    font-family: 'Quicksand', sans-serif;
   }
 header {
     box-shadow: 0 4px 11px 1px rgba(0, 0, 0, 0.8);
@@ -22,6 +24,7 @@ header {
     font-size: 8vh;
     color: #697e8c;
     width: 70%;
+    font-family: 'Quicksand', sans-serif;
 }
   
 p {
@@ -29,6 +32,7 @@ p {
     text-align: center;
     margin: 5vh auto;
     width: 50%;
-    font-size: 6vh;
+    font-size: 4vh;
     color: rgb(3, 2, 2);
+    font-family: 'Quicksand', sans-serif;
 }
