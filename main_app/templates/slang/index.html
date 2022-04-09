@@ -3,6 +3,16 @@
 
 <h1>All Slang Terms</h1>
 
+{% for slang in slangterms %}
+
+      <header>{{ slang.term }}</header>
+      <p>Definition: {{ slang.definition }}</p>
+      <p>example: {{ slang.example }}</p>
+  
+{% endfor %}
+
+
+
 
 
 
