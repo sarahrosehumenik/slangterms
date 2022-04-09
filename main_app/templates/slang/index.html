@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div id="header">
 <h1>All Slang Terms</h1>
+</div>
 
 {% for slang in slangterms %}
 
-      <header>{{ slang.term }}</header>
+      <h2>{{ slang.term }}</h2>
       <p>Definition: {{ slang.definition }}</p>
       <p>Example: {{ slang.example }}</p>
   
