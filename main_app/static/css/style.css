@@ -35,7 +35,6 @@ h1 {
 header {
     
     text-align: center;
-    
     margin: 5vh auto;
     font-size: 8vh;
     width: 100%;
@@ -72,3 +71,15 @@ p {
      margin: auto;
  }
 
+ h2:hover {
+    background-color: rgba(223, 123, 183, 0.112);
+    box-shadow: 0 4px 11px 1px rgba(0, 0, 0, 0.345);
+    border-radius: 10px;
+
+ }
+
+a {
+ display: block;
+ text-align: center;
+ margin: auto;
+}

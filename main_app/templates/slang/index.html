@@ -4,8 +4,13 @@
 <h1>All Slang Terms</h1>
 </div>
 
-{% for slang in slangterms %}
+     
 
+
+{% for slang in slangterms %}
+<a href="{% url 'detail' slang.id %}">
+
+<div id="link">
       <h2>{{ slang.term }}</h2>
       <p>Definition: {{ slang.definition }}</p>
       <p>Example: {{ slang.example }}</p>
@@ -13,8 +18,8 @@
 {% endfor %}
 
 
-
-
-
+</div>
+</a>
+ 
 
 {% endblock %}

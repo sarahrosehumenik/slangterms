@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Cat Details</h1>
+
+
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">  <h2>{{ slang.term }}</h2></a>
+      <p>Definition: {{ slang.definition }}</p>
+      <p>Example: {{ slang.example }}</p>
+      <div id="editdelete"><a href="{% url 'slang_update' slang.id %}">Edit</a>
+      <a href="{% url 'slang_delete' slang.id %}">Delete</a>
+      </div>
+  
+
+
+
+{% endblock %}
