@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Reaction List</h1>
+
+{% for reaction in react_list %}
+  <a href="{% url 'reactions_detail' reaction.id %}">
+  <p>{{ reaction.reaction }}</p>
+           
+
+  </a>
+{% endfor %}
+
+{% endblock %}

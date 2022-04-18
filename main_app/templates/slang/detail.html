@@ -7,11 +7,53 @@
     <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">  <h2>{{ slang.term }}</h2></a>
       <p>Definition: {{ slang.definition }}</p>
       <p>Example: {{ slang.example }}</p>
-      <div id="editdelete"><a href="{% url 'slang_update' slang.id %}">Edit</a>
+      <a href="{% url 'slang_update' slang.id %}">Edit</a>
       <a href="{% url 'slang_delete' slang.id %}">Delete</a>
-      </div>
+  
+      <form action="{% url 'add_thesaurus' slang.id %}" method="POST">
+        {% csrf_token %}
+        {{ thesaurus_form.as_p }}
+        <input  type="submit" class="btn" value="Add">
+      </form>
+
+      {% for thesaurus in slang.thesaurus_set.all %}
+          
+            <p>Synonym: {{thesaurus.synonym}}</p>
+            <p>Antonym: {{thesaurus.antonym}}</p>
+    {% endfor %}
+
+            <h1>Reactions</h1>
+            {% if slang.reactions.count %}
+              {% for reaction in slang.reactions.all %}
+              <p>{{ reaction.reaction}}</p>
+        
+                    <form action="{% url 'unassoc_reaction' slang.id reaction.id %}" method="POST">
+                      {% csrf_token %}
+                      <button type="submit" class="btn">Remove</button>
+                    </form>
+   
+              {% endfor %}
+            {% else %}
+              <p>No reactions 😔</p>
+            {% endif %}
+          
+      
   
 
+  <h1>Add Reactions:</h1>
+  {% if reactions.count %}
+  {% for reaction in reactions.all %}
+  <p> {{ reaction.reaction }}</p>
 
+  <form action="{% url 'assoc_reaction' slang.id reaction.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn">Add</button>
+  </form>
+  {% endfor %}
+  {% else %}
+  <p>has all reactions</p>
+{% endif %}
+   
+  
 
 {% endblock %}

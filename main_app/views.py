@@ -1,7 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
+from .models import Slang, React
 
-from .models import Slang
+
+
+
+from .forms import ThesaurusForm
 
 # Create your views here.
 from django.http import HttpResponse 
@@ -20,7 +25,10 @@ def slang_index(request):
 
 def slang_detail(request, slang_id):
   slang = Slang.objects.get(id=slang_id)
-  return render(request, 'slang/detail.html', { 'slang': slang })
+  reactions = React.objects.exclude(id__in=slang.reactions.all().values_list('id'))
+  thesaurus_form = ThesaurusForm()
+
+  return render(request, 'slang/detail.html', { 'slang': slang, 'thesaurus_form': thesaurus_form, 'reactions': reactions })
 
 class SlangCreate(CreateView):
   model = Slang
@@ -34,3 +42,39 @@ class SlangUpdate(UpdateView):
 class SlangDelete(DeleteView):
   model = Slang
   success_url = '/slang/'
+
+def add_thesaurus(request, slang_id):
+  # create a ModelForm instance using the data in the posted form
+    form = ThesaurusForm(request.POST)
+  # validate the data
+    if form.is_valid():
+      new_thesaurus = form.save(commit=False)
+      new_thesaurus.slang_id = slang_id
+      new_thesaurus.save()
+    return redirect('detail', slang_id=slang_id)
+
+class ReactList(ListView):
+  model = React
+
+class ReactDetail(DetailView):
+  model = React
+
+class ReactCreate(CreateView):
+  model = React
+  fields = '__all__'
+
+class ReactUpdate(UpdateView):
+  model = React
+  fields = ['reaction']
+
+class ReactDelete(DeleteView):
+  model = React
+  success_url = '/reactions/'
+
+def assoc_reaction(request, slang_id, reaction_id):
+  Slang.objects.get(id=slang_id).reactions.add(reaction_id)
+  return redirect('detail', slang_id=slang_id)
+
+def unassoc_reaction(request, slang_id, reaction_id):
+  Slang.objects.get(id=slang_id).reactions.remove(reaction_id)
+  return redirect('detail', slang_id=slang_id)

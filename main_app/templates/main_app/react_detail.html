@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Reactions Details</h1>
+
+<p>{{ react.reaction }}</p>
+       
+        <a href="{% url 'reactions_update' react.id %}">Edit</a>
+        <a href="{% url 'reactions_delete' react.id %}">Delete</a>
+ 
+{% endblock %}
